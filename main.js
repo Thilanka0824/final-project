@@ -137,8 +137,8 @@
 
 */
 
-const playerCards = [] //holds the players cards //used by the score keeper
-const dealerCards = [] //holds the dealers cards //used by the score keeper
+let playerCards = [] //holds the players cards //used by the score keeper
+let dealerCards = [] //holds the dealers cards //used by the score keeper
 
 let playerWallet = 500
 
@@ -150,14 +150,20 @@ let dealerTotalScore = 0
 const fullDeck = [2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11]
 
 let shuffledArray = fullDeck.sort((a, b) => 0.5 - Math.random()); //randomizes the deck //Math.random returns a random number between 0 and 1
-const dealtCards = []
-const gameOver = false
+let dealtCards = []
+let gameOver = false
 
 
 
 //QuerySelectors
-hitButton = document.querySelector('#hit-button')
-standButton = document.querySelector('#stand-button')
+let hitButton = document.querySelector('#hit-button')
+let standButton = document.querySelector('#stand-button')
+let dealCardsButton = document.querySelector('#deal-cards')
+
+let displayArea = document.querySelector('#display-area-div')
+let playerCardsDisplayArea = document.querySelector('#player-1')
+let dealerCardsDisplayArea = document.querySelector('#dealer')
+
 
 // while(gameOver === false){
 // for(let i = 0; i < shuffledArray; i++){
@@ -169,6 +175,14 @@ standButton = document.querySelector('#stand-button')
 //     shuffledArray.shift([i + 1])
 // }
 console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
+function nextRound(){
+    playerCards = []
+    dealerCards = []
+    displayArea.innerText = 'Dealing New Cards'
+
+}
+
+
 
 function playerScore(){
     playerTotalScore = playerCards.reduce(function (acc, cur) {//adds all numbers in the array together
@@ -182,28 +196,32 @@ function dealerScore(){
     });
 }
 
+function dealInitialCards(){
 playerCards.unshift(shuffledArray[0]) //upshifts the first card to the front of the player arr of cards
 console.log(`Player has: ${shuffledArray[0]}`) //show the player their card
 playerScore()
 console.log("playerTotalScore1: " + playerTotalScore);
+playerCardsDisplayArea.innerText = "Player 1:   " + playerCards
+
 
 dealerCards.unshift(shuffledArray[1])
 console.log(`Dealer has: ${shuffledArray[1]}`)
 dealerScore()
 console.log("dealerTotalScore1: " + dealerTotalScore);
 //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
-
+dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
 
 playerCards.unshift(shuffledArray[2])
 console.log(`Player has: ${shuffledArray[2]}`)
 playerScore()
 console.log("playerTotalScore2: " + playerTotalScore);
+playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
 
 
 dealerCards.unshift(shuffledArray[3])
 console.log(`Dealer's whole card: ${shuffledArray[3]}`)
 dealerScore()
-
+dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
 
 shuffledArray.shift([0]);
 shuffledArray.shift([1]);
@@ -211,6 +229,14 @@ shuffledArray.shift([2]);
 shuffledArray.shift([3]);
 console.log("Player: " + playerCards)
 console.log("Dealer: " + dealerCards)
+}
+
+
+dealInitialCards()
+
+if (playerTotalScore === 21) {
+  displayArea.innerText = "BLACKJACK!!!";
+}
 
 //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 
@@ -239,13 +265,22 @@ hitButton.addEventListener("click", () => {
   console.log("EventListener");
   console.log("Player: " + playerCards);
   playerScore()
-  
+  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
   for(let i = 0; i < playerCards.length; i++){
     console.log("inTheForLoop: " + playerCards[i])
+    if(playerTotalScore === 21){
+        displayArea.innerText = "BLACKJACK!!!"
+    }
     if(playerCards[i] === 11 && playerTotalScore > 21){
         playerTotalScore = playerTotalScore - 10
     }
     console.log(playerTotalScore)
+    
+    if(playerTotalScore > 21){
+        console.log(displayArea.innerText = "BUST!")
+         
+    }
+
   }
   
   
@@ -260,7 +295,13 @@ hitButton.addEventListener("click", () => {
   console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 });
 
-
+dealCardsButton.addEventListener('click', () => {
+    playerCards = []
+    dealerCards = []
+    playerTotalScore = 0
+    dealerTotalScore = 0
+    dealInitialCards()
+})
 // while(scoreKeeper < 22){ 
 
 // thePlayer.unshift(shuffledArray[5])
