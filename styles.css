@@ -50,6 +50,17 @@
     margin-left: 6%;
 }
 
+#player-1-text {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+    margin-top: 2%;
+    margin-bottom: 3%;
+    margin-right: 6%;
+    margin-left: 6%;
+}
+
 #display-area-div 
 {
     display: flex;
