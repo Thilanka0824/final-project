@@ -1,21 +1,7 @@
-
-/*
-
-*********************
-*** stretch goals *** 
-*********************
-
--have multiple players
--leverage an api to show motivational quotes when a button is pressed
--6 deck shoe
--loading page with an ability to create multiple users
-
-*/
-
 let playerCards = []; //holds the players cards //used by the score keeper
 let dealerCards = []; //holds the dealers cards //used by the score keeper
 
-let playerWallet = 500;
+let playerWallet = 0;
 
 let playerTotalScore = 0;
 let playerFinalScore = 0;
@@ -28,7 +14,7 @@ const fullDeck = [
   9, 10, 10, 10, 10, 11,
 ];
 // const fullDeck = [
-//   11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11 
+//   11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11
 // ];
 
 let shuffledArray = fullDeck.sort((a, b) => 0.5 - Math.random()); //randomizes the deck //Math.random returns a random number between 0 and 1
@@ -42,73 +28,12 @@ let dealCardsButton = document.querySelector("#deal-cards");
 
 let displayArea = document.querySelector("#display-area-div");
 let playerCardsDisplayArea = document.querySelector("#player-1");
-let suitPic = document.querySelector('#suit-pic')
+let suitPic = document.querySelector("#suit-pic");
 let dealerCardsDisplayArea = document.querySelector("#dealer");
 
-console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
+//console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 
-
-function nextRound() {
-  if (roundOver === true) {
-    playerCards = [];
-    dealerCards = [];
-    playerTotalScore = 0;
-    dealerTotalScore = 0;
-   
-    displayArea.innerText = "New Game";
-    displayArea.innerText = "";
-  }
-}
-
-
-function playerScore() {
-  playerTotalScore = playerCards.reduce(function (acc, cur) {
-    //adds all numbers in the array together
-    return acc + cur;
-  });
-}
-
-function dealerScore() {
-  dealerTotalScore = dealerCards.reduce(function (acc, cur) {
-    return acc + cur;
-  });
-}
-
-function dealInitialCards() {
-  
-  playerCards.unshift(shuffledArray[0]); //unshifts the first card to the front of the player arr of cards
-  console.log(`Player has: ${shuffledArray[0]}`); //show the player their card
-  playerScore();
-  console.log("playerTotalScore1: " + playerTotalScore);
-  console.log("playerFinalScore1: " + playerTotalScore);
-  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
-
-  dealerCards.unshift(shuffledArray[1]);
-  console.log(`Dealer has: ${shuffledArray[1]}`);
-  dealerScore();
-  console.log("dealerTotalScore1: " + dealerTotalScore);
-  //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
-  dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
-
-  playerCards.unshift(shuffledArray[2]);
-  console.log(`Player has: ${shuffledArray[2]}`);
-  playerScore();
-  console.log("playerTotalScore2: " + playerTotalScore);
-  console.log("playerFinalScore2: " + playerTotalScore);
-  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
-
-  dealerCards.unshift(shuffledArray[3]);
-  console.log(`Dealer's whole card: ${shuffledArray[3]}`);
-  dealerScore(); 
-  dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
-
-  shuffledArray.shift([0]);
-  shuffledArray.shift([1]);
-  shuffledArray.shift([2]);
-  shuffledArray.shift([3]);
-  console.log("Player: " + playerCards);
-  console.log("Dealer: " + dealerCards);
-}
+playerWallet = 500;
 
 dealInitialCards();
 
@@ -132,8 +57,8 @@ console.log("playerTotalScore: " + playerTotalScore);
 console.log("dealerTotalScore: " + dealerTotalScore);
 
 /************
-** BUTTONS **
-************/
+ ** BUTTONS **
+ ************/
 //HIT Button
 hitButton.addEventListener("click", () => {
   playerCards.push(shuffledArray[0]);
@@ -143,23 +68,22 @@ hitButton.addEventListener("click", () => {
   playerScore();
   playerTotalScore = playerTotalScore;
   playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
-  
+
   //Loop to deal with Ace Logic
   for (let i = 0; i < playerCards.length; i++) {
-    
     console.log("inTheForLoop: " + playerCards[i]);
-    
+
     if (playerTotalScore === 21) {
       displayArea.innerText = "BLACKJACK!!!";
-      roundOver = true
-      hitButton.removeEventListener()
+      roundOver = true;
+      hitButton.removeEventListener();
     }
     if (playerCards[i] === 11 && playerTotalScore > 21) {
       playerTotalScore = playerTotalScore - 10;
-      
-      console.log("playerTotalScore: " + playerTotalScore)
-      
-      if (playerTotalScore > 21){
+
+      console.log("playerTotalScore: " + playerTotalScore);
+
+      if (playerTotalScore > 21) {
         console.log((displayArea.innerText = "BUST! 1"));
         roundOver = true;
       }
@@ -174,15 +98,14 @@ hitButton.addEventListener("click", () => {
   }
 
   if (playerTotalScore > 21) {
-    roundOver = true
+    roundOver = true;
   }
   console.log("playerTotalScore: " + playerTotalScore);
   //shuffledArray.shift([0]);
   console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 
-  compareForWinner()
+  compareForWinner();
 });
-
 
 //STAND Button
 standButton.addEventListener("click", () => {
@@ -229,23 +152,61 @@ standButton.addEventListener("click", () => {
   compareForWinner();
 });
 
-dealCardsButton.addEventListener("click", () => {
-  playerCards = [];
-  dealerCards = [];
-  playerTotalScore = 0;
-  dealerTotalScore = 0;
-  displayArea.innerText = "clear all";
-  nextRound()
-  setTimeout(dealInitialCards(), 3000);
-});
+// dealCardsButton.addEventListener("click", () => {
+//   playerCards = [];
+//   dealerCards = [];
+//   playerTotalScore = 0;
+//   dealerTotalScore = 0;
+//   displayArea.innerText = "clear all";
+//   nextRound()
+//   setTimeout(dealInitialCards(), 3000);
+// });
 
 console.log(shuffledArray.length);
 
-
 compareForWinner();
 
-//comparing for the winner
+/*****************/
+/*** FUNCTIONS ***/
+/*****************/
 
+//dealing the initial cards
+function dealInitialCards() {
+  playerCards.unshift(shuffledArray[0]); //unshifts the first card to the front of the player arr of cards
+  console.log(`Player has: ${shuffledArray[0]}`); //show the player their card
+  playerScore();
+  console.log("playerTotalScore1: " + playerTotalScore);
+  console.log("playerFinalScore1: " + playerTotalScore);
+  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+
+  dealerCards.unshift(shuffledArray[1]);
+  console.log(`Dealer has: ${shuffledArray[1]}`);
+  dealerScore();
+  console.log("dealerTotalScore1: " + dealerTotalScore);
+  //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
+  dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
+
+  playerCards.unshift(shuffledArray[2]);
+  console.log(`Player has: ${shuffledArray[2]}`);
+  playerScore();
+  console.log("playerTotalScore2: " + playerTotalScore);
+  console.log("playerFinalScore2: " + playerTotalScore);
+  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+
+  dealerCards.unshift(shuffledArray[3]);
+  console.log(`Dealer's whole card: ${shuffledArray[3]}`);
+  dealerScore();
+  dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
+
+  shuffledArray.shift([0]);
+  shuffledArray.shift([1]);
+  shuffledArray.shift([2]);
+  shuffledArray.shift([3]);
+  console.log("Player: " + playerCards);
+  console.log("Dealer: " + dealerCards);
+}
+
+//comparing for the winner
 function compareForWinner() {
   if (roundOver === true) {
     if (playerTotalScore > 21) {
@@ -264,20 +225,40 @@ function compareForWinner() {
   }
 }
 
+function nextRound() {
+  if (roundOver === true) {
+    playerCards = [];
+    dealerCards = [];
+    playerTotalScore = 0;
+    dealerTotalScore = 0;
 
+    displayArea.innerText = "New Game";
+    displayArea.innerText = "";
+  }
+}
 
+function playerScore() {
+  playerTotalScore = playerCards.reduce(function (acc, cur) {
+    //adds all numbers in the array together
+    return acc + cur;
+  });
+}
 
-  // if (playerTotalScore < 22) {
-  //   if (playerTotalScore > dealerTotalScore) {
-  //     playerCardsDisplayArea.innerText = "Winner!";
-  //     playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
-  //   } else if (playerTotalScore < dealerTotalScore) {
-  //     playerCardsDisplayArea.innerText = "Not this time";
-  //     playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
-  //   }
-  // }
+function dealerScore() {
+  dealerTotalScore = dealerCards.reduce(function (acc, cur) {
+    return acc + cur;
+  });
+}
 
-  // if (dealerTotalScore > 21) {
-  //   dealerCardsDisplayArea.innerText = "Dealer Busts!";
-  //   dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
-  // }
+/*
+
+*********************
+*** stretch goals *** 
+*********************
+
+-have multiple players
+-leverage an api to show motivational quotes when a button is pressed
+-6 deck shoe
+-loading page with an ability to create multiple users
+
+*/

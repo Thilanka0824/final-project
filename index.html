@@ -42,15 +42,29 @@
             <div class="main-div" id="player-1-text"></div>
 
         </div>
-        <div class="main-div" id="display-area-div">
+        <div style="font-size:8vw" class="main-div" id="display-area-div">
             <p style="font-size:8vw" id="display-area"></p>
         </div>
         <div class="main-div" id="button-div">
-            <button id="deal-cards" type="button" class="btn btn-outline-light">Deal Cards</button>
-            <button id="hit-button"  type="button" class="btn btn-outline-light">Hit me!</button>
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Bet
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    <li><a class="dropdown-item" href="#">Menu item</a></li>
+                </ul>
+            </div>
+            
+            
+            <button id="deal-cards" type="button" class="btn btn-outline-light">Deal</button>
+            <button id="hit-button"  type="button" class="btn btn-outline-light">Hit</button>
             <button id="stand-button" type="button" class="btn btn-outline-light">Stand</button>
 
+            
         </div>
+        
         <script src="main.js"></script>
 </body>
 
