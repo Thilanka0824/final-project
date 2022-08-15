@@ -13,59 +13,60 @@
 
 
     <link rel="stylesheet" href="styles.css">
-    
+
 </head>
 
 <body>
     <style>
         body {
             background-image: url("https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjkwMC1zYXNpLXBhdHRlcm4tMThfMS5qcGc.jpg");
-            background-color: #f1efef;
+            background-color: #ffffff;
         }
     </style>
-        
-        <div>
-            <h1 id="header">BLACKJACK</h1>
+
+    <div>
+        <h1 id="header">BLACKJACK</h1>
+    </div>
+
+    <div style="font-size:6vw" class="main-div" id="dealer">
+
+        <h3>Dealer</h3>
+
+
+    </div>
+
+
+
+    <div style="font-size:6vw" class="main-div" id="player-1">
+        <div class="main-div pic" id="suit-pic"></div>
+        <div class="main-div" id="player-1-text"></div>
+
+    </div>
+    <div style="font-size:8vw" class="main-div" id="display-area-div">
+        <p style="font-size:8vw" id="display-area"></p>
+    </div>
+    <div class="main-div" id="button-div">
+        <div class="btn-group dropup">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Bet
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+            </ul>
         </div>
 
-        <div style="font-size:8vw" class="main-div" id="dealer">
 
-            <h3>Dealer</h3>
-
-
-        </div>
-       
+        <button id="deal-cards" type="button" class="btn btn-outline-light">Deal</button>
+        <button id="hit-button" type="button" class="btn btn-outline-light">Hit</button>
+        <button id="stand-button" type="button" class="btn btn-outline-light">Stand</button>
 
 
-        <div style="font-size:8vw" class="main-div" id="player-1">
-            <div class="main-div pic" id="suit-pic"></div> 
-            <div class="main-div" id="player-1-text"></div>
+    </div>
 
-        </div>
-        <div style="font-size:8vw" class="main-div" id="display-area-div">
-            <p style="font-size:8vw" id="display-area"></p>
-        </div>
-        <div class="main-div" id="button-div">
-            <div class="btn-group dropup">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Bet
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Menu item</a></li>
-                    <li><a class="dropdown-item" href="#">Menu item</a></li>
-                    <li><a class="dropdown-item" href="#">Menu item</a></li>
-                </ul>
-            </div>
-            
-            
-            <button id="deal-cards" type="button" class="btn btn-outline-light">Deal</button>
-            <button id="hit-button"  type="button" class="btn btn-outline-light">Hit</button>
-            <button id="stand-button" type="button" class="btn btn-outline-light">Stand</button>
-
-            
-        </div>
-        
-        <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

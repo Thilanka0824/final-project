@@ -66,8 +66,9 @@ hitButton.addEventListener("click", () => {
   console.log("EventListener");
   console.log("Player: " + playerCards);
   playerScore();
-  playerTotalScore = playerTotalScore;
-  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+
+  playerCardsDisplayArea.innerText =
+    "Player 1:   " + playerCards + " Total: " + playerTotalScore;
 
   //Loop to deal with Ace Logic
   for (let i = 0; i < playerCards.length; i++) {
@@ -119,7 +120,8 @@ standButton.addEventListener("click", () => {
     console.log("Dealer: " + dealerCards);
     dealerScore();
 
-    dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
+    dealerCardsDisplayArea.innerText =
+      "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
     console.log("dealerTotalScore: " + dealerTotalScore);
   }
   for (let i = 0; i < dealerCards.length; i++) {
@@ -177,26 +179,30 @@ function dealInitialCards() {
   playerScore();
   console.log("playerTotalScore1: " + playerTotalScore);
   console.log("playerFinalScore1: " + playerTotalScore);
-  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+  playerCardsDisplayArea.innerText =
+    "Player 1:   " + playerCards + " Total: " + playerTotalScore;
 
   dealerCards.unshift(shuffledArray[1]);
   console.log(`Dealer has: ${shuffledArray[1]}`);
   dealerScore();
   console.log("dealerTotalScore1: " + dealerTotalScore);
   //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
-  dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
+  dealerCardsDisplayArea.innerText =
+    "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
 
   playerCards.unshift(shuffledArray[2]);
   console.log(`Player has: ${shuffledArray[2]}`);
   playerScore();
   console.log("playerTotalScore2: " + playerTotalScore);
   console.log("playerFinalScore2: " + playerTotalScore);
-  playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+  playerCardsDisplayArea.innerText =
+    "Player 1:   " + playerCards + " Total: " + playerTotalScore;
 
   dealerCards.unshift(shuffledArray[3]);
   console.log(`Dealer's whole card: ${shuffledArray[3]}`);
   dealerScore();
-  dealerCardsDisplayArea.innerText = "Dealer:   " + dealerCards;
+  dealerCardsDisplayArea.innerText =
+    "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
 
   shuffledArray.shift([0]);
   shuffledArray.shift([1]);
