@@ -187,52 +187,46 @@ hitButton.addEventListener("click", () => {
 //STAND Button
 standButton.addEventListener("click", () => {
   //displayArea.innerText = "Stand";
-  
-  
-  
 
- 
-    while (dealerTotalScore < 17) {
-      dealerCards.push(shuffledArray[0]);
-      shuffledArray.shift([0]);
+  while (dealerTotalScore < 17) {
+    dealerCards.push(shuffledArray[0]);
+    shuffledArray.shift([0]);
 
-      console.log("Stand Button EventListener");
-      console.log("Dealer: " + dealerCards);
-      dealerScore();
-     
-      dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
+    console.log("Stand Button EventListener");
+    console.log("Dealer: " + dealerCards);
+    dealerScore();
+
+    dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
+    console.log("dealerTotalScore: " + dealerTotalScore);
+  }
+  for (let i = 0; i < dealerCards.length; i++) {
+    if (dealerTotalScore === 21 && playerTotalScore === 21) {
+      displayArea.innerText = "Stand PUSH";
+    }
+    if (dealerCards[i] === 11 && dealerTotalScore > 21) {
+      dealerTotalScore = dealerTotalScore - 10;
+
       console.log("dealerTotalScore: " + dealerTotalScore);
-    }
-    for (let i = 0; i < dealerCards.length; i++) {
-      if (dealerTotalScore === 21 && playerTotalScore === 21) {
-        displayArea.innerText = "Stand PUSH";
-      }
-      if (dealerCards[i] === 11 && dealerTotalScore > 21) {
-        dealerTotalScore = dealerTotalScore - 10;
-        
-        console.log("dealerTotalScore: " + dealerTotalScore);
-        if (dealerTotalScore > 21) {
-          console.log((displayArea.innerText = "BUST! 3"));
-          roundOver = true;
-        }
+      if (dealerTotalScore > 21) {
+        console.log((displayArea.innerText = "BUST! 3"));
+        roundOver = true;
       }
     }
-    
-    if(playerTotalScore > 21){
-      roundOver = true
-    }
-    if(dealerTotalScore > 21){
-      roundOver = true
-    }
+  }
 
-    if(dealerTotalScore > 16){
-      roundOver = true
-    }
-  
-  roundOver = true
- 
+  if (playerTotalScore > 21) {
+    roundOver = true;
+  }
+  if (dealerTotalScore > 21) {
+    roundOver = true;
+  }
+  if (dealerTotalScore > 16) {
+    roundOver = true;
+  }
+
+  roundOver = true;
+
   compareForWinner();
-  
 });
 
 dealCardsButton.addEventListener("click", () => {
@@ -260,22 +254,30 @@ function compareForWinner() {
       displayArea.innerText = "Dealer BUSTS!";
     } else if (dealerTotalScore === playerTotalScore) {
       displayArea.innerText = "PUSH";
-    }
-  
-
-  if (playerTotalScore < 22) {
-    if (playerTotalScore > dealerTotalScore) {
+    } else if (playerTotalScore > dealerTotalScore) {
+      displayArea.innerText = "PLAYER WINS!!!";
       playerCardsDisplayArea.innerText = "Winner!";
-      playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
     } else if (playerTotalScore < dealerTotalScore) {
-      playerCardsDisplayArea.innerText = "Not this time";
-      playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+      displayArea.innerText = "Dealer wins";
+      dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
     }
   }
+}
 
-  if (dealerTotalScore > 21) {
-    dealerCardsDisplayArea.innerText = "Dealer Busts!";
-    dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
-  }
-}
-}
+
+
+
+  // if (playerTotalScore < 22) {
+  //   if (playerTotalScore > dealerTotalScore) {
+  //     playerCardsDisplayArea.innerText = "Winner!";
+  //     playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+  //   } else if (playerTotalScore < dealerTotalScore) {
+  //     playerCardsDisplayArea.innerText = "Not this time";
+  //     playerCardsDisplayArea.innerText = "Player 1:   " + playerCards;
+  //   }
+  // }
+
+  // if (dealerTotalScore > 21) {
+  //   dealerCardsDisplayArea.innerText = "Dealer Busts!";
+  //   dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
+  // }
