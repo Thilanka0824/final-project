@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <!-- Bootstrap CSS and JS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -46,15 +48,16 @@
         <p style="font-size:8vw" id="display-area"></p>
     </div>
     <div class="main-div" id="button-div">
+        
         <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            <button id="bet-button" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Bet
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                <li><a class="dropdown-item" href="#">Menu item</a></li>
+                <li><a class="dropdown-item" href="#">$50</a></li>
+                <li><a class="dropdown-item" href="#">$100</a></li>
+                <li><a class="dropdown-item" href="#">$250</a></li>
             </ul>
         </div>
 
@@ -65,7 +68,9 @@
 
 
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
 

@@ -30,6 +30,7 @@ let displayArea = document.querySelector("#display-area-div");
 let playerCardsDisplayArea = document.querySelector("#player-1");
 let suitPic = document.querySelector("#suit-pic");
 let dealerCardsDisplayArea = document.querySelector("#dealer");
+let betButton = document.querySelector('#bet-button')
 
 //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 
@@ -83,6 +84,8 @@ hitButton.addEventListener("click", () => {
       playerTotalScore = playerTotalScore - 10;
 
       console.log("playerTotalScore: " + playerTotalScore);
+      playerCardsDisplayArea.innerText =
+        "Player 1:   " + playerCards + " Total: " + playerTotalScore;
 
       if (playerTotalScore > 21) {
         console.log((displayArea.innerText = "BUST! 1"));
@@ -92,10 +95,7 @@ hitButton.addEventListener("click", () => {
 
     console.log(playerTotalScore);
 
-    // if (playerTotalScore > 21) {
-    //   console.log((displayArea.innerText = "BUST! 2"));
-    //   roundOver = true;
-    // }
+    
   }
 
   if (playerTotalScore > 21) {
@@ -154,16 +154,21 @@ standButton.addEventListener("click", () => {
   compareForWinner();
 });
 
-// dealCardsButton.addEventListener("click", () => {
-//   playerCards = [];
-//   dealerCards = [];
-//   playerTotalScore = 0;
-//   dealerTotalScore = 0;
-//   displayArea.innerText = "clear all";
-//   nextRound()
-//   setTimeout(dealInitialCards(), 3000);
-// });
+dealCardsButton.addEventListener("click", () => {
+  playerCards = [];
+  dealerCards = [];
+  playerTotalScore = 0;
+  dealerTotalScore = 0;
+  displayArea.innerText = "clear all";
+  nextRound()
+  setTimeout(dealInitialCards(), 3000);
+});
 
+//BET button
+betButton.addEventListener('click', () => {
+ 
+  console.log('hi')
+})
 console.log(shuffledArray.length);
 
 compareForWinner();
