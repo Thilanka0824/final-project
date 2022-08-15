@@ -35,8 +35,8 @@ let betButton = document.querySelector('#bet-button')
 //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 
 playerWallet = 500;
+displayArea.innerText = "Press Deal to Start Game"
 
-dealInitialCards();
 
 if (playerTotalScore === 21) {
   displayArea.innerText = "BLACKJACK!!!";
@@ -155,13 +155,8 @@ standButton.addEventListener("click", () => {
 });
 
 dealCardsButton.addEventListener("click", () => {
-  playerCards = [];
-  dealerCards = [];
-  playerTotalScore = 0;
-  dealerTotalScore = 0;
-  displayArea.innerText = "clear all";
-  nextRound()
-  setTimeout(dealInitialCards(), 3000);
+  dealInitialCards();
+  displayArea.innerText = ''
 });
 
 //BET button
@@ -177,44 +172,66 @@ compareForWinner();
 /*** FUNCTIONS ***/
 /*****************/
 
+
 //dealing the initial cards
 function dealInitialCards() {
-  playerCards.unshift(shuffledArray[0]); //unshifts the first card to the front of the player arr of cards
-  console.log(`Player has: ${shuffledArray[0]}`); //show the player their card
-  playerScore();
-  console.log("playerTotalScore1: " + playerTotalScore);
-  console.log("playerFinalScore1: " + playerTotalScore);
-  playerCardsDisplayArea.innerText =
-    "Player 1:   " + playerCards + " Total: " + playerTotalScore;
-
+  setTimeout(function(){
+    playerCards.unshift(shuffledArray[0]);
+    playerScore();
+    playerCardsDisplayArea.innerText =
+      "Player 1:   " + playerCards + " Total: " + playerTotalScore;
+  },1200) //unshifts the first card to the front of the player arr of cards
+  //console.log(`Player has: ${shuffledArray[0]}`); //show the player their card
+  
+  //console.log("playerTotalScore1: " + playerTotalScore);
+  //console.log("playerFinalScore1: " + playerTotalScore);
+  
+ setTimeout(function(){
   dealerCards.unshift(shuffledArray[1]);
-  console.log(`Dealer has: ${shuffledArray[1]}`);
   dealerScore();
-  console.log("dealerTotalScore1: " + dealerTotalScore);
+  dealerCardsDisplayArea.innerText =
+    "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
+ },2400)
+  
+  //console.log(`Dealer has: ${shuffledArray[1]}`);
+  
+  //console.log("dealerTotalScore1: " + dealerTotalScore);
   //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
-  dealerCardsDisplayArea.innerText =
-    "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
+  
+  setTimeout(function () {
+    playerCards.unshift(shuffledArray[2]);
+    playerScore();
+    playerCardsDisplayArea.innerText =
+      "Player 1:   " + playerCards + " Total: " + playerTotalScore;
+  }, 3600);  
+  
 
-  playerCards.unshift(shuffledArray[2]);
-  console.log(`Player has: ${shuffledArray[2]}`);
-  playerScore();
-  console.log("playerTotalScore2: " + playerTotalScore);
-  console.log("playerFinalScore2: " + playerTotalScore);
-  playerCardsDisplayArea.innerText =
-    "Player 1:   " + playerCards + " Total: " + playerTotalScore;
+  // playerCards.unshift(shuffledArray[2]);
+  // //console.log(`Player has: ${shuffledArray[2]}`);
+  // playerScore();
+  // //console.log("playerTotalScore2: " + playerTotalScore);
+  // //console.log("playerFinalScore2: " + playerTotalScore);
+  // playerCardsDisplayArea.innerText =
+  //   "Player 1:   " + playerCards + " Total: " + playerTotalScore;
 
-  dealerCards.unshift(shuffledArray[3]);
-  console.log(`Dealer's whole card: ${shuffledArray[3]}`);
-  dealerScore();
-  dealerCardsDisplayArea.innerText =
-    "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
+   setTimeout(function () {
+     dealerCards.unshift(shuffledArray[3]);
+     dealerScore();
+     dealerCardsDisplayArea.innerText =
+       "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
+   }, 4800);
+  // dealerCards.unshift(shuffledArray[3]);
+  // //console.log(`Dealer's whole card: ${shuffledArray[3]}`);
+  // dealerScore();
+  // dealerCardsDisplayArea.innerText =
+  //   "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
 
   shuffledArray.shift([0]);
   shuffledArray.shift([1]);
   shuffledArray.shift([2]);
   shuffledArray.shift([3]);
-  console.log("Player: " + playerCards);
-  console.log("Dealer: " + dealerCards);
+  //console.log("Player: " + playerCards);
+  //console.log("Dealer: " + dealerCards);
 }
 
 //comparing for the winner
