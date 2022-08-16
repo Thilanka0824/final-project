@@ -112,7 +112,7 @@ hitButton.addEventListener("click", () => {
     console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 
     compareForWinner();
-  }, 800);
+  }, 500);
 });
 
 //STAND Button
@@ -260,7 +260,12 @@ function dealInitialCards() {
     if(playerTotalScore === 21 && dealerTotalScore === 21){
       displayArea.innerText = "PUSH"
     }
-  }, 5000);
+    displayArea.innerText = "HIT or STAND?"
+  }, 4801);
+
+  setTimeout(function () {
+    displayArea.innerText = "HIT or STAND?";
+  }, 5600)
 
   //console.log("Player: " + playerCards);
   //console.log("Dealer: " + dealerCards);
