@@ -416,6 +416,10 @@ function compareForWinner() {
   }
 }
 
+/***************************/
+/*** Next Round Function ***/
+/**************************/
+
 function nextRound() {
   if (dealOver === true && betMade === true && roundOver === true) {
     playerCards = [];
