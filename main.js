@@ -21,6 +21,7 @@ let shuffledArray = fullDeck.sort((a, b) => 0.5 - Math.random()); //randomizes t
 let dealtCards = [];
 let roundOver = false;
 let dealOver = false
+let betMade = false
 
 /***********************/
 /*** QUERY SELECTORS ***/
@@ -45,28 +46,45 @@ let twoFiftyButton = document.querySelector("#two-fifty-button");
 playerWallet = {cash: 500};
 wager = {amount: 0}
 
-displayArea.innerText = "Place your Bet!"
-function betFifty(){
-  playerWallet.cash = playerWallet.cash - 50
-  wallet.innerText = `$${playerWallet.cash}`;
-  wager.amount = 50
-  wagerDiv.innerText = `$${wager.amount}`;
+displayArea.innerText = "Place your Bet!";
+function betFifty() {
+  if (betMade === false) {
+    playerWallet.cash = playerWallet.cash - 50;
+    wallet.innerText = `$${playerWallet.cash}`;
+    wager.amount = 50;
+    wagerDiv.innerText = `$${wager.amount}`;
+    betMade = true;
+    displayArea.innerText = "Press Deal to Start Game";
+    
+  }
 }
 
+wallet.cash += wager.amount * 2;
+
 function betHundred() {
-  playerWallet.cash = playerWallet.cash - 100;
-  wallet.innerText = `$${playerWallet.cash}`;
-  wager.amount = 100;
-  wagerDiv.innerText = `$${wager.amount}`;
+  if (betMade === false) {
+    playerWallet.cash = playerWallet.cash - 100;
+    wallet.innerText = `$${playerWallet.cash}`;
+    wager.amount = 100;
+    wagerDiv.innerText = `$${wager.amount}`;
+    betMade = true;
+    displayArea.innerText = "Press Deal to Start Game";
+    
+  }
 }
 
 function betTwoFifty() {
-  playerWallet.cash = playerWallet.cash - 250;
-  wallet.innerText = `$${playerWallet.cash}`;
-  wager.amount = 250;
-  wagerDiv.innerText = `$${wager.amount}`;
+  if (betMade === false) {
+    playerWallet.cash = playerWallet.cash - 250;
+    wallet.innerText = `$${playerWallet.cash}`;
+    wager.amount = 250;
+    wagerDiv.innerText = `$${wager.amount}`;
+    betMade = true;
+    displayArea.innerText = "Press Deal to Start Game";
+  }
 }
-displayArea.innerText
+
+
 
 //displayArea.innerText = "Press Deal to Start Game";
 dealerCardsDisplayArea.innerText = "Dealer";
@@ -164,7 +182,7 @@ standButton.addEventListener("click", () => {
     }
     for (let i = 0; i < dealerCards.length; i++) {
       if (dealerTotalScore === 21 && playerTotalScore === 21) {
-        displayArea.innerText = "Stand PUSH";
+        displayArea.innerText = "PUSH 2";
       }
       if (dealerCards[i] === 11 && dealerTotalScore > 21) {
         dealerTotalScore = dealerTotalScore - 10;
@@ -194,11 +212,15 @@ standButton.addEventListener("click", () => {
 });
 
 dealCardsButton.addEventListener("click", () => {
-  if(dealOver === false){
-  dealInitialCards();
+  if(betMade === false){
+    displayArea.innerText = "PLACE A BET"
   }
-  displayArea.innerText = "";
-  dealOver = true
+  if(dealOver === false && betMade === true){
+  dealInitialCards();
+  dealOver = true;
+  }
+  //displayArea.innerText = "";
+  
 });
 
 /*******************/
@@ -213,14 +235,17 @@ console.log(shuffledArray.length);
 fiftyButton.addEventListener("click", () => {
   console.log("$50")
   betFifty()
+  
 })
 hundredButton.addEventListener("click", () => {
   console.log("$100")
   betHundred()
+  
 })
 twoFiftyButton.addEventListener("click", () => {
   console.log("$250")
   betTwoFifty()
+  
 })
 
 
