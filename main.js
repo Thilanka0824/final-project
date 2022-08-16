@@ -29,19 +29,22 @@ let betMade = false
 
 let hitButton = document.querySelector("#hit-button");
 let standButton = document.querySelector("#stand-button");
-let dealCardsButton = document.querySelector("#deal-cards");
+let dealCardsButton = document.querySelector("#deal-cards-button");
+let newRoundButton = document.querySelector("#new-round-button");
 
-let displayArea = document.querySelector("#display-area-div");
-let playerCardsDisplayArea = document.querySelector("#player-1-text");
-let wallet = document.querySelector("#wallet");
-let wagerDiv = document.querySelector("#wager-div")
-let suitPic = document.querySelector("#suit-pic");
-let dealerCardsDisplayArea = document.querySelector("#dealer-text");
 let betButton = document.querySelector("#bet-button");
 let fiftyButton = document.querySelector("#fifty-button");
 let hundredButton = document.querySelector("#hundred-button");
 let twoFiftyButton = document.querySelector("#two-fifty-button");
-//console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
+
+let displayArea = document.querySelector("#display-area-div");
+let playerCardsDisplayArea = document.querySelector("#player-1-text");
+let dealerCardsDisplayArea = document.querySelector("#dealer-text");
+
+let wallet = document.querySelector("#wallet");
+let wagerDiv = document.querySelector("#wager-div")
+
+let suitPic = document.querySelector("#suit-pic");
 
 playerWallet = {cash: 500};
 wager = {amount: 0}
@@ -116,50 +119,55 @@ console.log("dealerTotalScore: " + dealerTotalScore);
 /*** HIT BUTTON ***/
 /*******************/
 hitButton.addEventListener("click", () => {
-  setTimeout(function () {
-    playerCards.push(shuffledArray[0]);
-    shuffledArray.shift([0]);
-    console.log("EventListener");
-    console.log("Player: " + playerCards);
-    playerScore();
+  if (dealOver === true && betMade === true) {
+    setTimeout(function () {
+      playerCards.push(shuffledArray[0]);
+      shuffledArray.shift([0]);
+      console.log("EventListener");
+      console.log("Player: " + playerCards);
+      playerScore();
 
-    playerCardsDisplayArea.innerText =
-      "Player 1:   " + playerCards + " Total: " + playerTotalScore;
+      playerCardsDisplayArea.innerText =
+        "Player 1:   " + playerCards + " Total: " + playerTotalScore;
 
-    //Loop to deal with Ace Logic
-    for (let i = 0; i < playerCards.length; i++) {
-      console.log("inTheForLoop: " + playerCards[i]);
+      //Loop to deal with Ace Logic
+      for (let i = 0; i < playerCards.length; i++) {
+        console.log("inTheForLoop: " + playerCards[i]);
 
-      if (playerTotalScore === 21) {
-        displayArea.innerText = "BLACKJACK!!!";
-        roundOver = true;
-        hitButton.removeEventListener();
-      }
-      if (playerCards[i] === 11 && playerTotalScore > 21) {
-        playerTotalScore = playerTotalScore - 10;
-
-        console.log("playerTotalScore: " + playerTotalScore);
-        playerCardsDisplayArea.innerText =
-          "Player 1:   " + playerCards + " Total: " + playerTotalScore;
-
-        if (playerTotalScore > 21) {
-          console.log((displayArea.innerText = "BUST! 1"));
+        if (playerTotalScore === 21) {
+          displayArea.innerText = "BLACKJACK!!!";
           roundOver = true;
+          //hitButton.removeEventListener();
         }
+        if (playerCards[i] === 11 && playerTotalScore > 21) {
+          playerTotalScore = playerTotalScore - 10;
+
+          console.log("playerTotalScore: " + playerTotalScore);
+          playerCardsDisplayArea.innerText =
+            "Player 1:   " + playerCards + " Total: " + playerTotalScore;
+
+          if (playerTotalScore > 21) {
+            console.log((displayArea.innerText = "BUST! 1"));
+            roundOver = true;
+          }
+        }
+
+        console.log(playerTotalScore);
       }
 
-      console.log(playerTotalScore);
-    }
+      if (playerTotalScore > 21) {
+        roundOver = true;
+      }
+      console.log("playerTotalScore: " + playerTotalScore);
+      //shuffledArray.shift([0]);
+      console.log(
+        "🚀 ~ file: main.js ~ line 121 ~ shuffledArray",
+        shuffledArray
+      );
 
-    if (playerTotalScore > 21) {
-      roundOver = true;
-    }
-    console.log("playerTotalScore: " + playerTotalScore);
-    //shuffledArray.shift([0]);
-    console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
-
-    compareForWinner();
-  }, 500);
+      compareForWinner();
+    }, 500);
+  }
 });
 
 /*******************/
@@ -167,48 +175,50 @@ hitButton.addEventListener("click", () => {
 /*******************/
 standButton.addEventListener("click", () => {
   //displayArea.innerText = "Stand";
-  setTimeout(function () {
-    while (dealerTotalScore < 17) {
-      dealerCards.push(shuffledArray[0]);
-      shuffledArray.shift([0]);
+  if (dealOver === true && betMade === true) {
+    setTimeout(function () {
+      while (dealerTotalScore < 17) {
+        dealerCards.push(shuffledArray[0]);
+        shuffledArray.shift([0]);
 
-      console.log("Stand Button EventListener");
-      console.log("Dealer: " + dealerCards);
-      dealerScore();
+        console.log("Stand Button EventListener");
+        console.log("Dealer: " + dealerCards);
+        dealerScore();
 
-      dealerCardsDisplayArea.innerText =
-        "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
-      console.log("dealerTotalScore: " + dealerTotalScore);
-    }
-    for (let i = 0; i < dealerCards.length; i++) {
-      if (dealerTotalScore === 21 && playerTotalScore === 21) {
-        displayArea.innerText = "PUSH 2";
-      }
-      if (dealerCards[i] === 11 && dealerTotalScore > 21) {
-        dealerTotalScore = dealerTotalScore - 10;
-
+        dealerCardsDisplayArea.innerText =
+          "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
         console.log("dealerTotalScore: " + dealerTotalScore);
-        if (dealerTotalScore > 21) {
-          console.log((displayArea.innerText = "BUST! 3"));
-          roundOver = true;
+      }
+      for (let i = 0; i < dealerCards.length; i++) {
+        if (dealerTotalScore === 21 && playerTotalScore === 21) {
+          displayArea.innerText = "PUSH 2";
+        }
+        if (dealerCards[i] === 11 && dealerTotalScore > 21) {
+          dealerTotalScore = dealerTotalScore - 10;
+
+          console.log("dealerTotalScore: " + dealerTotalScore);
+          if (dealerTotalScore > 21) {
+            console.log((displayArea.innerText = "BUST! 3"));
+            roundOver = true;
+          }
         }
       }
-    }
 
-    if (playerTotalScore > 21) {
-      roundOver = true;
-    }
-    if (dealerTotalScore > 21) {
-      roundOver = true;
-    }
-    if (dealerTotalScore > 16) {
-      roundOver = true;
-    }
+      if (playerTotalScore > 21) {
+        roundOver = true;
+      }
+      if (dealerTotalScore > 21) {
+        roundOver = true;
+      }
+      if (dealerTotalScore > 16) {
+        roundOver = true;
+      }
 
-    roundOver = true;
+      roundOver = true;
 
-    compareForWinner();
-  },800);
+      compareForWinner();
+    }, 800);
+  }
 });
 
 dealCardsButton.addEventListener("click", () => {
@@ -250,11 +260,6 @@ twoFiftyButton.addEventListener("click", () => {
 
 
 compareForWinner();
-
-/*****************/
-/*** FUNCTIONS ***/
-/*****************/
-
 
 /**************************/
 /*** DEAL INITIAL CARDS ***/
@@ -316,9 +321,13 @@ function dealInitialCards() {
     shuffledArray.shift([2]);
     shuffledArray.shift([3]);
 
+    compareForWinner()
+    
     if(playerTotalScore === 21 && dealerTotalScore === 21){
-      displayArea.innerText = "PUSH"
+      displayArea.innerText = "PUSH 2"
     }
+    
+
     
   }, 4801);
 
@@ -330,7 +339,7 @@ function dealInitialCards() {
   //console.log("Dealer: " + dealerCards);
 }
 
-//
+
 /**************************/
 /*** Compare for Winner ***/
 /**************************/
@@ -342,22 +351,35 @@ function compareForWinner() {
       wager.amount = 0
       wagerDiv.innerText = `$${wager.amount}`;
       wallet.innerText = `$${playerWallet.cash}`;
+    
     } else if (dealerTotalScore > 21) {
       displayArea.innerText = "Dealer BUSTS!";
-      wallet.cash += wager.amount * 2
+      playerWallet.cash += wager.amount * 2
       wagerDiv.innerText = `$${wager.amount}`;
       wallet.innerText = `$${playerWallet.cash}`;
-    } else if (dealerTotalScore === playerTotalScore) {
+    
+    } else if(playerTotalScore === 21){
+      displayArea.innerText = "BLACKJACK";
+      playerWallet.cash += wager.amount * 2.5
+      wager.amount = 0
+      wagerDiv.innerText = `$${wager.amount}`;
+      wallet.innerText = `$${playerWallet.cash}`;
+    
+    }else if (dealerTotalScore === playerTotalScore) {
       displayArea.innerText = "PUSH";
-      wallet.cash += wager.amount;
+      playerWallet.cash += wager.amount;
+      wager.amount = 0
       wagerDiv.innerText = `$${wager.amount}`;
       wallet.innerText = `$${playerWallet.cash}`;
+    
     } else if (playerTotalScore > dealerTotalScore) {
       displayArea.innerText = "PLAYER WINS!!!";
       playerCardsDisplayArea.innerText = "Winner!";
-       wallet.cash += wager.amount * 2;
-       wagerDiv.innerText = `$${wager.amount}`;
-       wallet.innerText = `$${playerWallet.cash}`;
+      playerWallet.cash += wager.amount * 2;
+      wager.amount = 0;
+      wagerDiv.innerText = `$${wager.amount}`;
+      wallet.innerText = `$${playerWallet.cash}`;
+    
     } else if (playerTotalScore < dealerTotalScore) {
       displayArea.innerText = "Dealer wins";
       dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
@@ -376,7 +398,7 @@ function nextRound() {
     dealerTotalScore = 0;
 
     displayArea.innerText = "New Game";
-    displayArea.innerText = "";
+    
   }
 }
 
