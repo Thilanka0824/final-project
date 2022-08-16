@@ -91,9 +91,13 @@ function betTwoFifty() {
     displayArea.innerText = "Press Deal to Start Game";
   }
 }
+
+
 nextRoundButton.addEventListener('click', () => {
 console.log('hey')
   nextRound()
+  playerCardsDisplayArea.innerText = ''
+  dealerCardsDisplayArea.innerText = ''
 })
 
 
