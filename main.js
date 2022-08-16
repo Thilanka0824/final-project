@@ -30,7 +30,7 @@ let betMade = false
 let hitButton = document.querySelector("#hit-button");
 let standButton = document.querySelector("#stand-button");
 let dealCardsButton = document.querySelector("#deal-cards-button");
-let newRoundButton = document.querySelector("#new-round-button");
+let nextRoundButton = document.querySelector("#next-round-button");
 
 let betButton = document.querySelector("#bet-button");
 let fiftyButton = document.querySelector("#fifty-button");
@@ -50,6 +50,11 @@ playerWallet = {cash: 500};
 wager = {amount: 0}
 
 displayArea.innerText = "Place your Bet!";
+
+/***********************/
+/*** WAGER FUNCTIONS ***/
+/***********************/
+
 function betFifty() {
   if (betMade === false) {
     playerWallet.cash = playerWallet.cash - 50;
@@ -86,7 +91,9 @@ function betTwoFifty() {
     displayArea.innerText = "Press Deal to Start Game";
   }
 }
-
+nextRoundButton.addEventListener('click', () => {
+  
+})
 
 
 //displayArea.innerText = "Press Deal to Start Game";
