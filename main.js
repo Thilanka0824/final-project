@@ -22,7 +22,10 @@ let dealtCards = [];
 let roundOver = false;
 let dealOver = false
 
-//QuerySelectors
+/***********************/
+/*** QUERY SELECTORS ***/
+/***********************/
+
 let hitButton = document.querySelector("#hit-button");
 let standButton = document.querySelector("#stand-button");
 let dealCardsButton = document.querySelector("#deal-cards");
@@ -30,20 +33,46 @@ let dealCardsButton = document.querySelector("#deal-cards");
 let displayArea = document.querySelector("#display-area-div");
 let playerCardsDisplayArea = document.querySelector("#player-1-text");
 let wallet = document.querySelector("#wallet");
+let wagerDiv = document.querySelector("#wager-div")
 let suitPic = document.querySelector("#suit-pic");
-let dealerCardsDisplayArea = document.querySelector("#dealer");
+let dealerCardsDisplayArea = document.querySelector("#dealer-text");
 let betButton = document.querySelector("#bet-button");
 let fiftyButton = document.querySelector("#fifty-button");
 let hundredButton = document.querySelector("#hundred-button");
 let twoFiftyButton = document.querySelector("#two-fifty-button");
 //console.log("🚀 ~ file: main.js ~ line 121 ~ shuffledArray", shuffledArray);
 
-playerWallet = 500;
+playerWallet = {cash: 500};
+wager = {amount: 0}
 
-displayArea.innerText = "Press Deal to Start Game";
+displayArea.innerText = "Place your Bet!"
+function betFifty(){
+  playerWallet.cash = playerWallet.cash - 50
+  wallet.innerText = `$${playerWallet.cash}`;
+  wager.amount = 50
+  wagerDiv.innerText = `$${wager.amount}`;
+}
+
+function betHundred() {
+  playerWallet.cash = playerWallet.cash - 100;
+  wallet.innerText = `$${playerWallet.cash}`;
+  wager.amount = 100;
+  wagerDiv.innerText = `$${wager.amount}`;
+}
+
+function betTwoFifty() {
+  playerWallet.cash = playerWallet.cash - 250;
+  wallet.innerText = `$${playerWallet.cash}`;
+  wager.amount = 250;
+  wagerDiv.innerText = `$${wager.amount}`;
+}
+displayArea.innerText
+
+//displayArea.innerText = "Press Deal to Start Game";
 dealerCardsDisplayArea.innerText = "Dealer";
 playerCardsDisplayArea.innerText = "Player";
-wallet.innerText = `$${playerWallet}`;
+wallet.innerText = `$${playerWallet.cash}`;
+wagerDiv.innerText = `BET $${wager.amount}`;
 
 if (playerTotalScore === 21) {
   displayArea.innerText = "BLACKJACK!!!";
@@ -64,10 +93,10 @@ console.log("Dealer: " + dealerCards);
 console.log("playerTotalScore: " + playerTotalScore);
 console.log("dealerTotalScore: " + dealerTotalScore);
 
-/************
- ** BUTTONS **
- ************/
-//HIT Button
+
+/*******************/
+/*** HIT BUTTON ***/
+/*******************/
 hitButton.addEventListener("click", () => {
   setTimeout(function () {
     playerCards.push(shuffledArray[0]);
@@ -115,7 +144,9 @@ hitButton.addEventListener("click", () => {
   }, 500);
 });
 
-//STAND Button
+/*******************/
+/*** STAND BUTTON ***/
+/*******************/
 standButton.addEventListener("click", () => {
   //displayArea.innerText = "Stand";
   setTimeout(function () {
@@ -170,9 +201,9 @@ dealCardsButton.addEventListener("click", () => {
   dealOver = true
 });
 
-/******************/
-/*** BET Buttons ***/
-/******************/
+/*******************/
+/*** BET BUTTON ***/
+/*******************/
 
 betButton.addEventListener("click", () => {
   console.log("hi");
@@ -181,12 +212,15 @@ console.log(shuffledArray.length);
 
 fiftyButton.addEventListener("click", () => {
   console.log("$50")
+  betFifty()
 })
 hundredButton.addEventListener("click", () => {
   console.log("$100")
+  betHundred()
 })
 twoFiftyButton.addEventListener("click", () => {
   console.log("$250")
+  betTwoFifty()
 })
 
 
@@ -260,7 +294,7 @@ function dealInitialCards() {
     if(playerTotalScore === 21 && dealerTotalScore === 21){
       displayArea.innerText = "PUSH"
     }
-    displayArea.innerText = "HIT or STAND?"
+    
   }, 4801);
 
   setTimeout(function () {
