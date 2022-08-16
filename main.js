@@ -314,16 +314,31 @@ function compareForWinner() {
   if (roundOver === true) {
     if (playerTotalScore > 21) {
       displayArea.innerText = "You Busted =(";
+      wager.amount = 0
+      wagerDiv.innerText = `$${wager.amount}`;
+      wallet.innerText = `$${playerWallet.cash}`;
     } else if (dealerTotalScore > 21) {
       displayArea.innerText = "Dealer BUSTS!";
+      wallet.cash += wager.amount * 2
+      wagerDiv.innerText = `$${wager.amount}`;
+      wallet.innerText = `$${playerWallet.cash}`;
     } else if (dealerTotalScore === playerTotalScore) {
       displayArea.innerText = "PUSH";
+      wallet.cash += wager.amount;
+      wagerDiv.innerText = `$${wager.amount}`;
+      wallet.innerText = `$${playerWallet.cash}`;
     } else if (playerTotalScore > dealerTotalScore) {
       displayArea.innerText = "PLAYER WINS!!!";
       playerCardsDisplayArea.innerText = "Winner!";
+       wallet.cash += wager.amount * 2;
+       wagerDiv.innerText = `$${wager.amount}`;
+       wallet.innerText = `$${playerWallet.cash}`;
     } else if (playerTotalScore < dealerTotalScore) {
       displayArea.innerText = "Dealer wins";
       dealerCardsDisplayArea.innerText = "Dealer: " + dealerCards;
+      wager.amount = 0;
+      wagerDiv.innerText = `$${wager.amount}`;
+      wallet.innerText = `$${playerWallet.cash}`;
     }
   }
 }
