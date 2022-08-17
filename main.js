@@ -103,7 +103,7 @@ function betTwoFifty() {
 /*******************/
 
 betButton.addEventListener("click", () => {
-  console.log("hi");
+  
 });
 console.log(shuffledArray.length);
 
@@ -289,21 +289,21 @@ function dealInitialCards() {
     dealerScore();
     dealerCardsDisplayArea.innerText =
       "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
-  }, 2400);
+  }, 1600);
 
   setTimeout(function () {
     playerCards.unshift(shuffledArray[2]);
     playerScore();
     playerCardsDisplayArea.innerText =
       "Player 1:   " + playerCards + " Total: " + playerTotalScore;
-  }, 3600);
+  }, 2400);
 
   setTimeout(function () {
     dealerCards.unshift(shuffledArray[3]);
     dealerScore();
     dealerCardsDisplayArea.innerText =
       "Dealer: " + dealerCards + " Total: " + dealerTotalScore;
-  }, 4800);
+  }, 3600);
 
   setTimeout(function () {
     shuffledArray.shift([0]);
@@ -316,11 +316,11 @@ function dealInitialCards() {
     if (playerTotalScore === 21 && dealerTotalScore === 21) {
       displayArea.innerText = "PUSH 2";
     }
-  }, 4801);
+  }, 3601);
 
   setTimeout(function () {
     displayArea.innerText = "HIT or STAND?";
-  }, 5600);
+  }, 4800);
 }
 
 /**************************/
