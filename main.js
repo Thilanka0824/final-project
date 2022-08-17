@@ -157,7 +157,7 @@ hitButton.addEventListener("click", () => {
     wallet.innerText = `$${playerWallet.cash}`;
     wagerDiv.innerText = `BET $${wager.amount}`;
   }
-  
+
   if (dealOver === true && betMade === true) {
     setTimeout(function () {
       playerCards.push(shuffledArray[0]);
@@ -226,7 +226,7 @@ standButton.addEventListener("click", () => {
     wallet.innerText = `$${playerWallet.cash}`;
     wagerDiv.innerText = `BET $${wager.amount}`;
   }
-  
+
   if (dealOver === true && betMade === true) {
     setTimeout(function () {
       while (dealerTotalScore < 17) {
@@ -395,8 +395,8 @@ function nextRound() {
 nextRoundButton.addEventListener("click", () => {
   console.log("hey");
   nextRound();
-  playerCardsDisplayArea.innerText = "";
-  dealerCardsDisplayArea.innerText = "";
+  dealerCardsDisplayArea.innerText = "Dealer";
+  playerCardsDisplayArea.innerText = "Player";
 });
 
 /****************************/
