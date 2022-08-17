@@ -1,99 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <!-- Bootstrap CSS and JS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-    <link rel="stylesheet" href="styles.css">
-
-</head>
-
-<body>
+  <body>
     <style>
-        body {
-            background-image: url("https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjkwMC1zYXNpLXBhdHRlcm4tMThfMS5qcGc.jpg");
-            background-color: #ffffff;
-        }
+      body {
+        background-image: url("https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjkwMC1zYXNpLXBhdHRlcm4tMThfMS5qcGc.jpg");
+        background-color: #ffffff;
+      }
     </style>
 
     <div>
-        <h1 id="header">BLACKJACK</h1>
+      <h1 id="header">BLACKJACK</h1>
     </div>
 
-    <div style="font-size:6vw" class="main-div" id="dealer">
-        <div class="main-div wager" id="wager-div"></div>
-        <div class="main-div wager" id="dealer-text"></div>
-        
+    <div style="font-size: 6vw" class="main-div" id="dealer">
+      <div class="main-div wager" id="wager-div"></div>
+      <div class="main-div wager" id="dealer-text"></div>
 
-        <h3></h3>
-
-
+      <h3></h3>
     </div>
 
-
-
-    <div style="font-size:6vw" class="main-div" id="player-1">
-        <div class="main-div wallet" id="wallet"></div>
-        <!-- <div class="main-div pic" id="suit-pic"></div> -->
-        <div class="main-div" id="player-1-text"></div>
-
+    <div style="font-size: 6vw" class="main-div" id="player-1">
+      <div class="main-div wallet" id="wallet"></div>
+      <!-- <div class="main-div pic" id="suit-pic"></div> -->
+      <div class="main-div" id="player-1-text"></div>
     </div>
-    <div style="font-size:8vw" class="main-div" id="display-area-div">
-        <div style="font-size:8vw" id="display-area"></div>
+    <div style="font-size: 8vw" class="main-div" id="display-area-div">
+      <div style="font-size: 8vw" id="display-area"></div>
     </div>
     <div class="main-div" id="button-div">
-        
-        
-        <div class="btn-group dropup">
-            <button id="bet-button" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Bet
-            </button>
-            <ul class="dropdown-menu">
-                <li><a id="fifty-button" class="dropdown-item" href="#">$50</a></li>
-                <li><a id="hundred-button" class="dropdown-item" href="#">$100</a></li>
-                <li><a id="two-fifty-button" class="dropdown-item" href="#">$250</a></li>
-            </ul>
-        </div>
+      <div class="btn-group dropup">
+        <button
+          id="bet-button"
+          type="button"
+          class="btn btn-secondary dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Bet
+        </button>
+        <ul class="dropdown-menu">
+          <li><a id="fifty-button" class="dropdown-item" href="#">$50</a></li>
+          <li>
+            <a id="hundred-button" class="dropdown-item" href="#">$100</a>
+          </li>
+          <li>
+            <a id="two-fifty-button" class="dropdown-item" href="#">$250</a>
+          </li>
+        </ul>
+      </div>
 
-        
-        <button id="deal-cards-button" type="button" class="btn btn-outline-light">Deal</button>
-        <button id="hit-button" type="button" class="btn btn-outline-light">Hit</button>
-        <button id="stand-button" type="button" class="btn btn-outline-light">Stand</button>
-        <button id="next-round-button" type="button" class="btn btn-outline-light">Next</button>
-
-        
-
+      <button
+        id="deal-cards-button"
+        type="button"
+        class="btn btn-outline-light"
+      >
+        Deal
+      </button>
+      <button id="hit-button" type="button" class="btn btn-outline-light">
+        Hit
+      </button>
+      <button id="stand-button" type="button" class="btn btn-outline-light">
+        Stand
+      </button>
+      <button
+        id="next-round-button"
+        type="button"
+        class="btn btn-outline-light"
+      >
+        Next
+      </button>
     </div>
     <div id="quote-div">
-        <button id="quote-button" class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
-            aria-controls="offcanvasBottom">Motivate Me!</button>
-        
-        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body small">
-                ...
-            </div>
-        </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-    <script src="main.js"></script>
-</body>
+      <button
+        id="quote-button"
+        class="btn btn-outline-light"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasBottom"
+        aria-controls="offcanvasBottom"
+      >
+        Motivate Me!
+      </button>
 
+      <div
+        class="offcanvas offcanvas-bottom"
+        tabindex="-1"
+        id="offcanvasBottom"
+        aria-labelledby="offcanvasBottomLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasBottomLabel">
+            Offcanvas bottom
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body small">...</div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
 </html>

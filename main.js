@@ -16,7 +16,6 @@ let playerWallet = 0;
 let playerTotalScore = 0;
 let playerFinalScore = 0;
 let dealerTotalScore = 0;
-let dealerFinalScore = 0;
 
 const fullDeck = [
   2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10,
@@ -76,7 +75,6 @@ function betFifty() {
   }
 }
 
-wallet.cash += wager.amount * 2;
 
 function betHundred() {
   if (betMade === false) {
