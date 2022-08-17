@@ -374,16 +374,17 @@ function winFinisher() {
 
 function nextRound() {
   if (dealOver === true && betMade === true && roundOver === true) {
-    playerCards = [];
+    playerCards = []; 
     dealerCards = [];
     playerTotalScore = 0;
     dealerTotalScore = 0;
 
     displayArea.innerText = "Place your Bet!";
+    dealOver = false;
+    betMade = false;
+    roundOver = false;
   }
-  dealOver = false;
-  betMade = false;
-  roundOver = false;
+  
 }
 
 /*************************/
